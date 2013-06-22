@@ -11,7 +11,13 @@ spec/reports
 test/tmp
 test/version_tmp
 tmp
-
+.bundle
+.DS_Store
+.idea
+bin
+gen
+tmp
+local.properties
 # YARD artifacts
 .yardoc
 _yardoc

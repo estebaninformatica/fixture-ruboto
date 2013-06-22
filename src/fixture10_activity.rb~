@@ -1,0 +1,35 @@
+require 'ruboto/widget'
+require 'ruboto/util/toast'
+require_relative "person"
+require_relative "tournament"
+ruboto_import_widgets :EditText, :TextView, :Button, :LinearLayout
+
+# http://xkcd.com/378/
+
+class Fixture10Activity
+  def onCreate(bundle)
+    super
+    # Create a proc to act as the buttons's click listener
+    handle_click = proc do |view|
+      @tv.append "\n#{view.getText}"
+
+      @et.text = @quantity.text
+    end
+
+    setContentView(
+      linear_layout(:orientation => :vertical) do
+        @et = edit_text
+        @quantity = edit_text :hint => "Quantity of player for team"
+        @team = edit_text :hint=> "Escriba los nombres de los jugadores ej:Pato Colo Ivan Alvaro"
+        linear_layout do
+          button :text => "Hello, World", :on_click_listener => handle_click
+          button :text => "Hello, Ruboto", :on_click_listener => handle_click
+        end
+        @tv = text_view :text => "Click buttons or menu items:"
+      end
+    )
+
+  end
+
+
+end
